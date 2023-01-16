@@ -1,49 +1,32 @@
+import { useState } from "react";
 import "./App.css";
-import Button from "./components/Button";
+import ButtonSection from "./components/ButtonSection";
+import Counter from "./components/Counter";
+import Form from "./components/Form";
+import Header from "./components/Header";
 
 function App() {
-  function alertFunction() {
-    alert("Button is Clicked");
+  const [initialValue, setInitialValue] = useState(0);
+  console.log(initialValue);
+  function handleChangeInitialValue(e) {
+    e.preventDefault();
   }
-
-  function customFunction(param) {
-    console.log(param);
-  }
-
-  // const nav = ["Home", "About", "Contact"];
-  const nav = [
-    {
-      value: "Home",
-      id: 1
-    },
-    {
-      value: "About",
-      id: 2
-    }
-  ];
-
   return (
     <div className="App">
-      <header className="App-header">
-        <nav>
-          <ul>
-            {nav
-              .filter((item) => item.value === "Home")
-              .map((li, index) => {
-                return <li key={li.id}>{li.value}</li>;
-              })}
-          </ul>
-        </nav>
-        <Button type="button" onClick={alertFunction} text="Default" />
-        <Button
-          type="submit"
-          customFunction={customFunction}
-          customClass="alert"
-          text="Alert"
+      <Header />
+      <ButtonSection />
+      <form onSubmit={(e) => handleChangeInitialValue(e)} className="Counter">
+        <input
+          type="number"
+          value={initialValue}
+          onChange={(e) => setInitialValue(parseInt(e.target.value))}
         />
-        <Button type="reset" customClass="warning" text="Warning" />
-        <Button />
-      </header>
+        <button type="submit"> Update Initial Values </button>
+        <Counter startNumber={initialValue} increaseNumber={10} />
+        <Counter startNumber={initialValue + 10} increaseNumber={10} decreaseNumber={10} />
+        <Counter decreaseNumber={7} />
+      </form>
+      <Form />
     </div>
   );
 }
