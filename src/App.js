@@ -4,16 +4,18 @@ import ButtonSection from "./components/ButtonSection";
 import Counter from "./components/Counter";
 import Form from "./components/Form";
 import Header from "./components/Header";
+import ToDo from "./components/ToDo";
 
 function App() {
   const [initialValue, setInitialValue] = useState(0);
-  console.log(initialValue);
+  // console.log(initialValue);
   function handleChangeInitialValue(e) {
     e.preventDefault();
   }
   return (
     <div className="App">
       <Header />
+      <ToDo />
       <ButtonSection />
       <form onSubmit={(e) => handleChangeInitialValue(e)} className="Counter">
         <input

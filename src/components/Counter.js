@@ -4,7 +4,7 @@ const Counter = ({ startNumber, increaseNumber, decreaseNumber }) => {
   const [number, setNumber] = useState(startNumber || 0);
 
   useEffect(() => {
-    console.log("First Appearance");
+    // console.log("First Appearance");
   }, []);
   
   useEffect(() => {
