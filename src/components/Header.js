@@ -1,18 +1,30 @@
+import { NavLink } from "react-router-dom";
+
 const nav = [
   {
     value: "Home",
     id: 1,
-    link: ''
+    link: ""
   },
   {
-    value: "About",
-    id: 2,
-    link: 'about'
+    value: "Products",
+    id:2,
+    link: 'products'
   },
   {
-    value: "Contact",
+    value: "Button Section",
     id: 3,
-    link: 'contact'
+    link: "button-section"
+  },
+  {
+    value: "Counter",
+    id: 4,
+    link: "counter"
+  },
+  {
+    value: "Form",
+    id: 5,
+    link: "form"
   }
 ];
 
@@ -20,13 +32,21 @@ const Header = (params) => {
   return (
     <header className="App-header">
       <nav>
-        <ul>
+        <ul className="navList">
           {nav
             // .filter((item) => item.value === "Home")
             .map((li, index) => {
               return (
                 <li key={li.id}>
-                  <a href={`/${li.link}`}>{li.value}</a>
+                  <NavLink
+                    to={`/${li.link}`}
+                    className={({ isActive }) =>
+                      isActive ? "activeNav" : undefined
+                    }
+                  >
+                    {li.value}
+                  </NavLink>
+                  {/* <a href={`/${li.link}`}>{li.value}</a> */}
                 </li>
               );
             })}

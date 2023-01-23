@@ -1,3 +1,5 @@
+@import './reset.css';
+
 .App {
   text-align: center;
 }
@@ -11,6 +13,25 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header nav {
+  width: 100%;
+}
+.navList {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.navList li a{
+  color: white;
+  font-size: 20px;
+}
+
+.activeNav {
+  text-decoration: underline;
 }
 
 .btn {
@@ -43,4 +64,32 @@
 
 .checkedItem {
   text-decoration: line-through;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.productCard {
+  border: 1px solid black;
+  background-color: antiquewhite;
+  border-radius: 6px;
+  padding: 10px 20px;
+}
+
+.productCard:hover {
+  transform: scale(1.1);
+}
+
+.productCard img {
+  width: 100%;
+  object-fit: cover;
+  height: 100px;
+}
+
+.productImageCover {
+  width: 100%;
 }
