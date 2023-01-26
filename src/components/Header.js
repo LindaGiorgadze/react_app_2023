@@ -1,4 +1,9 @@
 import { NavLink } from "react-router-dom";
+import Button from "./Button";
+import i18n from "../i18n/i18n";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const nav = [
   {
@@ -8,8 +13,8 @@ const nav = [
   },
   {
     value: "Products",
-    id:2,
-    link: 'products'
+    id: 2,
+    link: "products"
   },
   {
     value: "Button Section",
@@ -29,6 +34,17 @@ const nav = [
 ];
 
 const Header = (params) => {
+  const { t } = useTranslation();
+  const [language, setLanguage] = useState("en");
+
+  useEffect(() => {
+    changeLanguage(language);
+  }, [language]);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <header className="App-header">
       <nav>
@@ -37,14 +53,14 @@ const Header = (params) => {
             // .filter((item) => item.value === "Home")
             .map((li, index) => {
               return (
-                <li key={li.id}>
+                <li className="navList_li" key={li.id}>
                   <NavLink
                     to={`/${li.link}`}
                     className={({ isActive }) =>
                       isActive ? "activeNav" : undefined
                     }
                   >
-                    {li.value}
+                    {t(li.value)}
                   </NavLink>
                   {/* <a href={`/${li.link}`}>{li.value}</a> */}
                 </li>
@@ -52,6 +68,16 @@ const Header = (params) => {
             })}
         </ul>
       </nav>
+      <div className="lngDiv">
+        <Button text={"English"} onClick={() => changeLanguage("en")} />
+        <Button text={"ქართული"} onClick={() => changeLanguage("ka")} />
+        <Button
+          text={t("lngSwitch")}
+          onClick={() =>
+            language === "en" ? setLanguage("ka") : setLanguage("en")
+          }
+        />
+      </div>
     </header>
   );
 };
