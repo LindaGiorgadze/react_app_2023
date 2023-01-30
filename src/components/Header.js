@@ -30,6 +30,11 @@ const nav = [
     value: "Form",
     id: 5,
     link: "form"
+  },
+  {
+    value: "Gallery",
+    id: 6,
+    link: 'gallery'
   }
 ];
 
