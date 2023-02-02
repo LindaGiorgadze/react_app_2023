@@ -1,10 +1,15 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import CartContext from "../../context/cartContext";
+import Button from "../Button";
 
 const Products = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const { cart, setCart } = useContext(CartContext);
+  console.log(cart);
   useEffect(() => {
     axios
       .get("https://lindagiorgadze.github.io/FakeServer/products.json")
@@ -20,13 +25,17 @@ const Products = () => {
         {products?.map((product) => {
           return (
             <div
-              onClick={() => navigate(`/products/${product.id}`)}
+              // onClick={() => navigate(`/products/${product.id}`)}
               className="productCard"
               key={product.id}
             >
-              <h2>{product.title}</h2>
+              <div className="row align-items-center">
+                <h2 className="col">{product.title}</h2>
+                <Button customClass='col' onClick={() => setCart([...cart, product])} />
+              </div>
+
               <img src={product.img} alt={product.title} />
-              {/* <Link to={`/products/${product.id}`}>See more details</Link> */}
+              <Link to={`/products/${product.id}`}>See more details</Link>
             </div>
           );
         })}

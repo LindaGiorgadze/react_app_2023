@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Counter from "./Counter";
+import CounterUseReducer from "./CounterUseReducer";
 
 const CounterForm = () => {
   const [initialValue, setInitialValue] = useState(0);
@@ -16,6 +17,11 @@ const CounterForm = () => {
         onChange={(e) => setInitialValue(parseInt(e.target.value))}
       />
       <button type="submit"> Update Initial Values </button>
+      <CounterUseReducer
+        startNumber={initialValue}
+        increaseNumber={15}
+        decreaseNumber={10}
+      />
       <Counter startNumber={initialValue} increaseNumber={10} />
       <Counter
         startNumber={initialValue + 10}
