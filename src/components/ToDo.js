@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRef, useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
 import ToDoItem from "./ToDoItem";
 
 const _toDoItems = [
@@ -20,6 +21,8 @@ const ToDo = () => {
     textInput?.current?.focus();
   }, []);
 
+  // console.log(textInput?.current);
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Submitted");
@@ -37,7 +40,7 @@ const ToDo = () => {
     });
     setToDoItems(newTodoItems);
   }
-  
+
   return (
     <div>
       <h3>Todo App</h3>
@@ -46,8 +49,12 @@ const ToDo = () => {
           inputValue !== "" ? handleSubmit(e) : e.preventDefault()
         }
       >
-        <input
+        <Input
           ref={textInput}
+          inputValue={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
