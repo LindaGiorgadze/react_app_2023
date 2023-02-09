@@ -21,8 +21,6 @@ const ToDo = () => {
     textInput?.current?.focus();
   }, []);
 
-  // console.log(textInput?.current);
-
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Submitted");
